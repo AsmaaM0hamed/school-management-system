@@ -6,7 +6,7 @@
   <title> Dashboard| @yield('title')</title>
 
     @include('backend.layouts.css')
-
+    @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -59,5 +59,6 @@
 </div>
 <!-- ./wrapper -->
 @include('backend.layouts.js');
+@yield('js')
 </body>
 </html>

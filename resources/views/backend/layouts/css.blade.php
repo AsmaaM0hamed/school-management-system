@@ -22,3 +22,5 @@
   <link rel="stylesheet" href="{{ URL::asset('backend/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ URL::asset('backend/plugins/summernote/summernote-bs4.min.css') }}">
+
+
