@@ -2,85 +2,84 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Models\backend\classe;
 use Illuminate\Http\Request;
+use App\Models\backend\grade;
+use App\Models\backend\classe;
 use App\Http\Controllers\Controller;
 
 class ClasseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        public function index()
+        {
+            //
+            $classes=classe::all();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\classe  $classe
-     * @return \Illuminate\Http\Response
-     */
-    public function show(classe $classe)
-    {
-        //
-    }
+           return view('backend.classes.allclasses',compact('classes'));
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\classe  $classe
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(classe $classe)
-    {
-        //
-    }
+        public function create()
+        {
+            //
+            $grades= grade::all();
+            return view('backend.classes.addclasses',compact('grades'));
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\classe  $classe
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, classe $classe)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\classe  $classe
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(classe $classe)
-    {
-        //
-    }
+        public function store(Request $request)
+        {
+            //
+
+            classe::create
+            (
+                [
+                    'name'=>[
+                        'en'=>$request->name_en,
+                        'ar'=>$request->name_ar,
+                    ],
+                    'grade_id'=>$request->grade_id,
+                ]
+            );
+            return redirect()->back()->with('add','تم اضافة المرحلة الدراسية');
+        }
+
+
+        public function show(classe $classe)
+        {
+            //
+        }
+
+        public function edit($id)
+        {
+            $class=classe::find($id);
+            $grades=grade::all();
+            return view('backend.classes.editclasses',compact('class','grades'));
+        }
+
+
+        public function update(Request $request, $id)
+
+        {
+            classe::where('id',$id)->update
+            (
+                [
+                    'name'=>[
+                        'en'=>$request->name_en,
+                        'ar'=>$request->name_ar,
+                    ],
+                    'grade_id'=>$request->grade_id,
+                ]
+            );
+            return redirect()->route("classes.index")->with('edit','تم التعديل بنجاح');
+        }
+
+
+        public function destroy($id)
+        {
+            //
+            classe::destroy($id);
+            return redirect()->back()->with('delet','تم الحذف بنجاح');
+
+        }
 }
