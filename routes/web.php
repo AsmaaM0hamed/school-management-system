@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\backend\ClasseController;
-use App\Http\Controllers\backend\GradeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\backend\SectionController;
+
+use App\Http\Controllers\backend\GradeController;
+use App\Http\Controllers\backend\ClasseController;
+
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -38,6 +41,8 @@ Route::group(
         });
         Route::resource('grades',GradeController::class);
         Route::resource('classes',ClasseController::class);
+        Route::resource('sections',SectionController::class);
+
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     });

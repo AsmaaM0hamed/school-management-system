@@ -1,20 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend;
 
-use App\Models\section;
 use Illuminate\Http\Request;
+use App\Models\backend\grade;
+use App\Models\backend\section;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\backend\classe;
 
 class SectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+
+        $grades=grade::all();
+
+      return view('backend.sections.section',compact('grades'));
     }
 
     /**
@@ -27,15 +30,11 @@ class SectionController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
+       return $request;
     }
 
     /**
@@ -82,4 +81,5 @@ class SectionController extends Controller
     {
         //
     }
+
 }

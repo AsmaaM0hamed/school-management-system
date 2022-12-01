@@ -13,4 +13,13 @@ class grade extends Model
 
     public $translatable = ['name'];
     protected $fillable=['name','nots'];
+
+    public function sections()
+    {
+        return $this->hasMany(section::class);
+    }
+    public function classes()
+    {
+        return $this->hasMany(classe::class);
+    }
 }
